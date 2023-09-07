@@ -1,0 +1,100 @@
+body,
+html {
+  margin: 0;
+}
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #233036;
+  /* background-color: #f0de95; */
+  color: white;
+  padding: 10px;
+}
+
+/* Styles for the title on the left */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  z-index: 9999;
+}
+
+/* Styles for the title text */
+.navbar-title {
+  font-size: 25px;
+}
+
+.navbar-title:hover {
+  cursor: pointer;
+}
+
+/* Styles for the search bar in the middle */
+.navbar-middle {
+  flex: 3;
+  text-align: center;
+  margin-left: -36px;
+}
+
+/* Styles for the search input */
+.search-bar {
+  width: 50%;
+  padding: 8px;
+  border-radius: 15px;
+  border: none;
+}
+
+/* Styles for the button on the right */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  /* text-align: right; */
+}
+
+/* Styles for the button */
+.nav-button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.navbar-logo {
+  height: 30px;
+}
+
+.navbar-logo:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-title {
+    font-size: 20px;
+  }
+
+  .navbar-logo {
+    height: 50px;
+  }
+}
+
+.left-btn {
+  margin-left: -40px;
+  margin-right: 4px;
+}
+
+.search-btn {
+  margin-left: -30px;
+  border: 1px solid grey;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: white;
+}

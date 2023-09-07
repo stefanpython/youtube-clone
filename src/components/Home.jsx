@@ -20,7 +20,7 @@ const Home = () => {
         }
       })
       .then((data) => {
-        setVideos(data);
+        setVideos(data.items);
       })
       .catch((err) => {
         console.log("Error retrieving data:", err);
