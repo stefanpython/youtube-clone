@@ -4,6 +4,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-left">
+        <img className="menu-img" src="./menu.png" alt="menu" />
         <img className="navbar-logo" src="./youtube.png" alt="logo" />
         <span className="navbar-title">Youtube</span>
       </div>

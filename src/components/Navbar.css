@@ -98,3 +98,9 @@ html {
   padding: 5px;
   background-color: white;
 }
+
+.menu-img {
+  height: 30px;
+  color: white;
+  margin-right: 4px;
+}

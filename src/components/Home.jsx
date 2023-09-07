@@ -29,7 +29,32 @@ const Home = () => {
 
   console.log(videos);
 
-  return <h1>home</h1>;
+  return (
+    <div className="home-container">
+      <div className="left-side">
+        <div className="home">
+          <img className="home-img" src="./home.png" alt="home" />
+        </div>
+        <div className="subscription">
+          <img
+            className="subscription-img"
+            src="./subscribe.png"
+            alt="subscriptions"
+          />
+        </div>
+        <div className="shorts">
+          <img className="shorts-img" src="./shorts.png" alt="shorts" />
+        </div>
+        <div className="library">
+          <img className="library-img" src="./library.png" alt="library" />
+        </div>
+      </div>
+
+      <div className="right-side">
+        <h1>Right Container</h1>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
