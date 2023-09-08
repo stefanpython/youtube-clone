@@ -52,6 +52,34 @@ const Home = ({ isLeftContainerOpen }) => {
 
       <div className="right-side">
         <h1>Right Container</h1>
+
+        <div className="video-list">
+          {videos.map((video) => (
+            <div className="video-item" key={video.id}>
+              <img
+                className="video-thumbnail"
+                src={video.snippet.thumbnails.default.url}
+                alt={video.snippet.title}
+              />
+              <div className="video-info">
+                <h2 className="video-title">{video.snippet.title}</h2>
+                <p className="video-channel">
+                  Channel: {video.snippet.channelTitle}
+                </p>
+                <p className="video-views">
+                  Views: {video.statistics.viewCount}
+                </p>
+                <p className="video-duration">
+                  Duration: {video.contentDetails.duration}
+                </p>
+                <p className="video-upload-date">
+                  Uploaded:{" "}
+                  {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
