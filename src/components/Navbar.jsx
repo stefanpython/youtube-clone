@@ -1,10 +1,16 @@
 import "./Navbar.css";
+import PropTypes from "prop-types";
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick }) => {
   return (
     <div className="navbar">
       <div className="navbar-left">
-        <img className="menu-img" src="./menu.png" alt="menu" />
+        <img
+          className="menu-img"
+          src="./menu.png"
+          alt="menu"
+          onClick={onMenuClick}
+        />
         <img className="navbar-logo" src="./youtube.png" alt="logo" />
         <span className="navbar-title">Youtube</span>
       </div>
@@ -26,6 +32,10 @@ const Navbar = () => {
       </div>
     </div>
   );
+};
+
+Navbar.propTypes = {
+  onMenuClick: PropTypes.func.isRequired,
 };
 
 export default Navbar;

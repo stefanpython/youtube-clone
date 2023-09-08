@@ -8,6 +8,15 @@
   background-color: rgb(77, 153, 219);
   max-width: 13em;
   min-width: 5em;
+  transition: max-width 0.3s ease-in-out;
+}
+
+.left-side.open {
+  max-width: 13em;
+}
+
+.left-side.closed {
+  max-width: 0;
 }
 
 .left-side img {

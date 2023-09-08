@@ -1,7 +1,7 @@
 import "./Home.css";
 import { useState, useEffect } from "react";
 
-const Home = () => {
+const Home = ({ isLeftContainerOpen }) => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="left-side">
+      <div className={`left-side ${isLeftContainerOpen ? "open" : "closed"}`}>
         <div className="home">
           <img className="home-img" src="./home.png" alt="home" />
         </div>
