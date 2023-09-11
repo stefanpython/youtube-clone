@@ -1,7 +1,11 @@
 .home-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 7fr;
   min-height: 94.5vh;
+}
+
+.right-side {
+  padding: 0 20px;
 }
 
 .left-side {

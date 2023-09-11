@@ -1,7 +1,9 @@
 import "./Navbar.css";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ onMenuClick }) => {
+  const navigate = useNavigate();
   return (
     <div className="navbar">
       <div className="navbar-left">
@@ -12,7 +14,9 @@ const Navbar = ({ onMenuClick }) => {
           onClick={onMenuClick}
         />
         <img className="navbar-logo" src="./youtube.png" alt="logo" />
-        <span className="navbar-title">Youtube</span>
+        <span className="navbar-title" onClick={() => navigate("/")}>
+          Youtube
+        </span>
       </div>
       <div className="navbar-middle">
         <input

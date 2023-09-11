@@ -1,5 +1,7 @@
 import "./Home.css";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Home = ({ isLeftContainerOpen }) => {
   const [videos, setVideos] = useState([]);
@@ -26,8 +28,6 @@ const Home = ({ isLeftContainerOpen }) => {
         console.log("Error retrieving data:", err);
       });
   };
-
-  console.log(videos);
 
   return (
     <div className="home-container">
@@ -56,33 +56,39 @@ const Home = ({ isLeftContainerOpen }) => {
         <div className="video-list">
           {videos.map((video) => (
             <div className="video-item" key={video.id}>
-              <img
-                className="video-thumbnail"
-                src={video.snippet.thumbnails.default.url}
-                alt={video.snippet.title}
-              />
-              <div className="video-info">
-                <h2 className="video-title">{video.snippet.title}</h2>
-                <p className="video-channel">
-                  Channel: {video.snippet.channelTitle}
-                </p>
-                <p className="video-views">
-                  Views: {video.statistics.viewCount}
-                </p>
-                <p className="video-duration">
-                  Duration: {video.contentDetails.duration}
-                </p>
-                <p className="video-upload-date">
-                  Uploaded:{" "}
-                  {new Date(video.snippet.publishedAt).toLocaleDateString()}
-                </p>
-              </div>
+              <Link to={`/video/${video.id}`}>
+                <img
+                  className="video-thumbnail"
+                  src={video.snippet.thumbnails.default.url}
+                  alt={video.snippet.title}
+                />
+                <div className="video-info">
+                  <h2 className="video-title">{video.snippet.title}</h2>
+                  <p className="video-channel">
+                    Channel: {video.snippet.channelTitle}
+                  </p>
+                  <p className="video-views">
+                    Views: {video.statistics.viewCount}
+                  </p>
+                  <p className="video-duration">
+                    Duration: {video.contentDetails.duration}
+                  </p>
+                  <p className="video-upload-date">
+                    Uploaded:{" "}
+                    {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                  </p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
       </div>
     </div>
   );
+};
+
+Home.propTypes = {
+  isLeftContainerOpen: PropTypes.bool.isRequired,
 };
 
 export default Home;
