@@ -6,39 +6,67 @@ import { useParams } from "react-router-dom";
 const SinglePage = () => {
   const { videoId } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
+  const [relatedVideos, setRelatedVideos] = useState(null);
+  const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU"; // Replace with your API key
 
   useEffect(() => {
-    const fetchVideoDetails = () => {
-      const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU";
-
-      fetch(
-        `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics&key=${apiKey}`
-      )
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("Error fetching video details");
-          }
-        })
-        .then((data) => {
-          if (data.items.length > 0) {
-            setVideoDetails(data.items[0]);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching video details:", error);
-        });
-    };
-
-    fetchVideoDetails();
+    fetchData();
   }, [videoId]);
+
+  // Await for video details to grab and fetch by channelId
+  const fetchData = async () => {
+    try {
+      const videoResponse = await fetchVideoDetails();
+      setVideoDetails(videoResponse);
+
+      if (
+        videoResponse &&
+        videoResponse.snippet &&
+        videoResponse.snippet.channelId
+      ) {
+        const relatedVideosResponse = await fetchRelated(
+          videoResponse.snippet.channelId
+        );
+        setRelatedVideos(relatedVideosResponse);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // Fetch video details
+  const fetchVideoDetails = async () => {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics&key=${apiKey}`
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.items[0];
+    } else {
+      throw new Error("Error fetching video details");
+    }
+  };
+
+  // Fetch related videos for a channel id
+  const fetchRelated = async (channelId) => {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&type=video&part=snippet&maxResults=10`
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.items;
+    } else {
+      throw new Error("Error fetching related videos");
+    }
+  };
 
   if (!videoDetails) {
     return <div>Loading...</div>;
   }
 
-  console.log(videoDetails);
+  console.log(relatedVideos);
 
   return (
     <div className="single-page-container">
