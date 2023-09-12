@@ -7,9 +7,11 @@ const SinglePage = () => {
   const { videoId } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
   const [relatedVideos, setRelatedVideos] = useState(null);
+  const [comments, setComments] = useState(null);
   const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU";
 
   useEffect(() => {
+    fetchComments();
     fetchData();
   }, [videoId]);
 
@@ -62,11 +64,30 @@ const SinglePage = () => {
     }
   };
 
+  // Fetch video comments
+  const fetchComments = () => {
+    fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=id%2Csnippet&videoId=${videoId}&key=${apiKey}&maxResults=10
+  `)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Could not fetch comments");
+        }
+      })
+      .then((data) => {
+        setComments(data.items);
+      })
+      .catch((err) => {
+        console.log("Error fetching comments:", err);
+      });
+  };
+
   if (!videoDetails) {
     return <div>Loading...</div>;
   }
 
-  console.log(videoDetails);
+  console.log(comments);
 
   return (
     <div className="single-page-container">
