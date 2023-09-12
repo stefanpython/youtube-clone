@@ -104,7 +104,42 @@ const SinglePage = () => {
           <p>{videoDetails.snippet.description}</p>
           {/* Add more details here */}
         </div>
-        {/* Add comments section here */}
+
+        {/* Display comments */}
+        {comments ? (
+          <div className="comments">
+            <h2>Comments</h2>
+            <ul>
+              {comments.map((comment) => (
+                <li key={comment.id}>
+                  <div className="comment-author">
+                    <img
+                      src={
+                        comment.snippet.topLevelComment.snippet
+                          .authorProfileImageUrl
+                      }
+                      alt={
+                        comment.snippet.topLevelComment.snippet
+                          .authorDisplayName
+                      }
+                    />
+                    <p>
+                      {
+                        comment.snippet.topLevelComment.snippet
+                          .authorDisplayName
+                      }
+                    </p>
+                  </div>
+                  <p>{comment.snippet.topLevelComment.snippet.textDisplay}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div>Loading comments...</div>
+        )}
+
+        {/*Display related videos*/}
       </div>
       <div className="related-videos">
         <h2>Related Videos</h2>
