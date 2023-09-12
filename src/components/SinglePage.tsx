@@ -94,9 +94,8 @@ const SinglePage = () => {
     <div className="single-page-container">
       <div className="video-container">
         <iframe
+          className="video-frame"
           title={videoDetails.snippet.title}
-          width="420"
-          height="345"
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
           allowFullScreen
         ></iframe>
