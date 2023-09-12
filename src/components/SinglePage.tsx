@@ -2,6 +2,7 @@ import React from "react";
 import "./SinglePage.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SinglePage = () => {
   const { videoId } = useParams();
@@ -87,7 +88,7 @@ const SinglePage = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(comments);
+  console.log(relatedVideos);
 
   return (
     <div className="single-page-container">
@@ -130,7 +131,16 @@ const SinglePage = () => {
                       }
                     </p>
                   </div>
-                  <p>{comment.snippet.topLevelComment.snippet.textDisplay}</p>
+                  <p>
+                    {comment.snippet.topLevelComment.snippet.textDisplay}{" "}
+                    <span>
+                      {comment.snippet.topLevelComment.snippet.publishedAt}
+                    </span>
+                  </p>
+
+                  <span>
+                    {comment.snippet.topLevelComment.snippet.likeCount}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -147,17 +157,13 @@ const SinglePage = () => {
           <ul>
             {relatedVideos.map((video) => (
               <li key={video.id.videoId}>
-                <a
-                  href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to={`/video/${video.id.videoId}`}>
                   <img
                     src={video.snippet.thumbnails.default.url}
                     alt={video.snippet.title}
                   />
                   <p>{video.snippet.title}</p>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
