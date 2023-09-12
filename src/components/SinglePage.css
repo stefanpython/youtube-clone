@@ -1,0 +1,25 @@
+.single-page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  /* Add more styles as needed */
+}
+
+.video-container {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.video-details {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  /* Add more styles for video details */
+}
+
+.related-videos {
+  flex: 1;
+  /* Add styles for related videos */
+}
+
+/* Style for comments section can be added here */

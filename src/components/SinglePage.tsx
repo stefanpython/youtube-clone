@@ -7,7 +7,7 @@ const SinglePage = () => {
   const { videoId } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
   const [relatedVideos, setRelatedVideos] = useState(null);
-  const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU"; // Replace with your API key
+  const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU";
 
   useEffect(() => {
     fetchData();
@@ -66,16 +66,49 @@ const SinglePage = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(relatedVideos);
+  console.log(videoDetails);
 
   return (
     <div className="single-page-container">
-      <iframe
-        width="420"
-        height="345"
-        src={`http://www.youtube.com/embed/${videoId}?autoplay=1`}
-        allowFullScreen
-      ></iframe>
+      <div className="video-container">
+        <iframe
+          title={videoDetails.snippet.title}
+          width="420"
+          height="345"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          allowFullScreen
+        ></iframe>
+        <div className="video-details">
+          <h1>{videoDetails.snippet.title}</h1>
+          <p>{videoDetails.snippet.description}</p>
+          {/* Add more details here */}
+        </div>
+        {/* Add comments section here */}
+      </div>
+      <div className="related-videos">
+        <h2>Related Videos</h2>
+        {relatedVideos ? (
+          <ul>
+            {relatedVideos.map((video) => (
+              <li key={video.id.videoId}>
+                <a
+                  href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={video.snippet.thumbnails.default.url}
+                    alt={video.snippet.title}
+                  />
+                  <p>{video.snippet.title}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>Loading related videos...</div>
+        )}
+      </div>
     </div>
   );
 };
