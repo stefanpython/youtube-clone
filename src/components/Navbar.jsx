@@ -1,9 +1,12 @@
 import "./Navbar.css";
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ onMenuClick }) => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <div className="navbar">
       <div className="navbar-left">
@@ -22,9 +25,27 @@ const Navbar = ({ onMenuClick }) => {
         <input
           type="text"
           className="search-bar"
-          placeholder="Search for movie..."
+          placeholder="Search for video..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && searchQuery.trim() !== "") {
+              navigate(`/search/${searchQuery}`);
+              setSearchQuery("");
+            }
+          }}
         />
-        <button className="search-btn">&#128269;</button>
+        <button
+          className="search-btn"
+          onClick={() => {
+            if (searchQuery.trim() !== "") {
+              navigate(`/search/${searchQuery}`);
+              setSearchQuery("");
+            }
+          }}
+        >
+          &#128269;
+        </button>
       </div>
       <div className="navbar-right">
         <div className="dropdown left-btn">

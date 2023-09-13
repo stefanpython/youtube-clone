@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import SinglePage from "./components/SinglePage";
+import Search from "./components/Search";
 
 function App() {
   const [isLeftContainerOpen, setIsLeftContainerOpen] = useState(true);
@@ -24,6 +25,7 @@ function App() {
           />
 
           <Route path="/video/:videoId" element={<SinglePage />} />
+          <Route path="/search/:query" element={<Search />} />
         </Routes>
       </HashRouter>
     </div>
