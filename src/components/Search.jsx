@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Search = () => {
+const Search = ({ isLeftContainerOpen }) => {
   const [searchResults, setSearchResults] = useState([]);
   const { query } = useParams();
 
@@ -33,7 +34,49 @@ const Search = () => {
 
   console.log(searchResults);
 
-  return <h1>search {query}</h1>;
+  return (
+    <div className="home-container">
+      <div className={`left-side ${isLeftContainerOpen ? "open" : "closed"}`}>
+        <div className="home">
+          <img className="home-img" src="./home.png" alt="home" />
+        </div>
+        <div className="subscription">
+          <img
+            className="subscription-img"
+            src="./subscribe.png"
+            alt="subscriptions"
+          />
+        </div>
+        <div className="shorts">
+          <img className="shorts-img" src="./shorts.png" alt="shorts" />
+        </div>
+        <div className="library">
+          <img className="library-img" src="./library.png" alt="library" />
+        </div>
+      </div>
+
+      <div className="search-videos">
+        <h2>Related Videos</h2>
+        {searchResults ? (
+          <ul>
+            {searchResults.map((video) => (
+              <li key={video.id.videoId}>
+                <Link to={`/video/${video.id.videoId}`}>
+                  <img
+                    src={video.snippet.thumbnails.default.url}
+                    alt={video.snippet.title}
+                  />
+                  <p>{video.snippet.title}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>Loading related videos...</div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Search;

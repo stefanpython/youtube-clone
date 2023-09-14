@@ -25,7 +25,10 @@ function App() {
           />
 
           <Route path="/video/:videoId" element={<SinglePage />} />
-          <Route path="/search/:query" element={<Search />} />
+          <Route
+            path="/search/:query"
+            element={<Search isLeftContainerOpen={isLeftContainerOpen} />}
+          />
         </Routes>
       </HashRouter>
     </div>
