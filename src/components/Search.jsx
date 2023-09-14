@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Search = ({ isLeftContainerOpen }) => {
   const [searchResults, setSearchResults] = useState([]);
@@ -77,6 +78,10 @@ const Search = ({ isLeftContainerOpen }) => {
       </div>
     </div>
   );
+};
+
+Search.propTypes = {
+  isLeftContainerOpen: PropTypes.bool.isRequired,
 };
 
 export default Search;
