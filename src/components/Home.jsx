@@ -37,24 +37,30 @@ const Home = ({ isLeftContainerOpen }) => {
       });
   };
 
+  console.log(videos);
+
   return (
     <div className="home-container">
       <div className={`left-side ${isLeftContainerOpen ? "open" : "closed"}`}>
-        <div className="home">
+        <div className="item home">
           <img className="home-img" src="./home.png" alt="home" />
+          <p>Home</p>
         </div>
-        <div className="subscription">
+        <div className="item subscription">
           <img
             className="subscription-img"
             src="./subscribe.png"
             alt="subscriptions"
           />
+          <p>Subscriptions</p>
         </div>
-        <div className="shorts">
+        <div className="item shorts">
           <img className="shorts-img" src="./shorts.png" alt="shorts" />
+          <p>Shorts</p>
         </div>
-        <div className="library">
+        <div className="item library">
           <img className="library-img" src="./library.png" alt="library" />
+          <p>Library</p>
         </div>
       </div>
 
@@ -66,6 +72,7 @@ const Home = ({ isLeftContainerOpen }) => {
           next={fetchVideos}
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
+          scrollThreshold={0.9}
         >
           <div className="video-list">
             {videos.map((video) => (

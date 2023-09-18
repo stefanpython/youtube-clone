@@ -4,12 +4,35 @@
   min-height: 94.5vh;
 }
 
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.closed p {
+  transition: opacity 0.2s ease-in;
+  opacity: 0;
+}
+
+.open p {
+  display: grid;
+  transition: opacity 1s ease-out; /* Smooth transition for opacity with a 1s delay */
+  opacity: 1; /* Set opacity to 1 to make it visible */
+}
+
+@media (max-width: 1250px) {
+  .item p {
+    display: none;
+  }
+}
+
 .right-side {
   padding: 0 20px;
 }
 
 .left-side {
-  background-color: rgb(77, 153, 219);
+  background-color: whitesmoke;
   max-width: 13em;
   min-width: 5em;
   transition: max-width 0.3s ease-in-out;
