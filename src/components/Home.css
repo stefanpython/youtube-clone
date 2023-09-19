@@ -17,8 +17,8 @@
 
 .open p {
   display: grid;
-  transition: opacity 1s ease-out; /* Smooth transition for opacity with a 1s delay */
-  opacity: 1; /* Set opacity to 1 to make it visible */
+  transition: opacity 1s ease-out 0.2s;
+  opacity: 1;
 }
 
 @media (max-width: 1250px) {

@@ -12,7 +12,7 @@ const Navbar = ({ onMenuClick }) => {
       <div className="navbar-left">
         <img
           className="menu-img"
-          src="./menu.png"
+          src="./menu-bar.png"
           alt="menu"
           onClick={onMenuClick}
         />
@@ -25,7 +25,7 @@ const Navbar = ({ onMenuClick }) => {
         <input
           type="text"
           className="search-bar"
-          placeholder="Search for video..."
+          placeholder="Search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={(e) => {
@@ -48,11 +48,10 @@ const Navbar = ({ onMenuClick }) => {
         </button>
       </div>
       <div className="navbar-right">
-        <div className="dropdown left-btn">
-          <button className="movies-btn">Button</button>
-        </div>
         <div className="dropdown right-btn">
-          <button className="shows-btn"> Button</button>
+          <img className="user-icon" src="./bell.png" alt="bell" />
+          <img className="user-icon" src="./video.png" alt="video" />
+          <img className="user-icon" src="./user.png" alt="user" />
         </div>
       </div>
     </div>

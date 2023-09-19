@@ -1,4 +1,3 @@
-import React from "react";
 import "./SinglePage.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -9,7 +8,7 @@ const SinglePage = () => {
   const [videoDetails, setVideoDetails] = useState(null);
   const [relatedVideos, setRelatedVideos] = useState(null);
   const [comments, setComments] = useState(null);
-  const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU";
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
     fetchComments();

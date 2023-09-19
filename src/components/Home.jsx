@@ -8,13 +8,13 @@ const Home = ({ isLeftContainerOpen }) => {
   const [videos, setVideos] = useState([]);
   const [pageToken, setPageToken] = useState("");
   const [hasMore, setHasMore] = useState(true);
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
     fetchVideos();
   }, []);
 
   const fetchVideos = () => {
-    const apiKey = "AIzaSyDpZtXkR6ljXZM6C1Y9LPfWDEl8974-MUU";
     if (!hasMore) return;
 
     fetch(
