@@ -2,6 +2,8 @@
 
 A simple YouTube clone built using Vite and React.
 
+Live demo [HERE](https://stefanpython.github.io/youtube-clone/)
+
 ### Features
 
 - **Home Page:** View a list of videos on the home page.
