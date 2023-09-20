@@ -37,8 +37,6 @@ const Home = ({ isLeftContainerOpen }) => {
       });
   };
 
-  console.log(videos);
-
   return (
     <div className="home-container">
       <div className={`left-side ${isLeftContainerOpen ? "open" : "closed"}`}>
@@ -65,8 +63,6 @@ const Home = ({ isLeftContainerOpen }) => {
       </div>
 
       <div className="right-side">
-        <h1>Right Container</h1>
-
         <InfiniteScroll
           dataLength={videos.length}
           next={fetchVideos}
