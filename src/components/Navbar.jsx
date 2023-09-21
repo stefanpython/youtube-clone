@@ -44,7 +44,7 @@ const Navbar = ({ onMenuClick }) => {
             }
           }}
         >
-          &#128269;
+          <div className="search-icon">&#128269;</div>
         </button>
       </div>
       <div className="navbar-right">

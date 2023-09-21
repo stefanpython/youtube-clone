@@ -8,6 +8,7 @@ const SinglePage = () => {
   const [videoDetails, setVideoDetails] = useState(null);
   const [relatedVideos, setRelatedVideos] = useState(null);
   const [comments, setComments] = useState(null);
+
   const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
@@ -87,8 +88,6 @@ const SinglePage = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(relatedVideos);
-
   return (
     <div className="single-page-container">
       <div className="video-container">
@@ -101,7 +100,6 @@ const SinglePage = () => {
         <div className="video-details">
           <h1>{videoDetails.snippet.title}</h1>
           <p>{videoDetails.snippet.description}</p>
-          {/* Add more details here */}
         </div>
 
         {/* Display comments */}

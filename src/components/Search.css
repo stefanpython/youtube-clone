@@ -1,0 +1,9 @@
+.video-image {
+  width: 250px;
+  border-radius: 10px;
+}
+
+.search-videos a {
+  text-decoration: none;
+  color: black;
+}

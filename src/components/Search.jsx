@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./Search.css";
 
 const Search = ({ isLeftContainerOpen }) => {
   const [searchResults, setSearchResults] = useState([]);
@@ -62,6 +63,7 @@ const Search = ({ isLeftContainerOpen }) => {
               <li key={video.id.videoId}>
                 <Link to={`/video/${video.id.videoId}`}>
                   <img
+                    className="video-image"
                     src={video.snippet.thumbnails.default.url}
                     alt={video.snippet.title}
                   />

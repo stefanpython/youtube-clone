@@ -25,6 +25,11 @@
   .item p {
     display: none;
   }
+
+  .video-thumbnail {
+    height: 120px;
+    width: 250px;
+  }
 }
 
 .right-side {
