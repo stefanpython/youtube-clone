@@ -73,7 +73,7 @@ const Home = ({ isLeftContainerOpen }) => {
           <div className="video-list">
             {videos.map((video) => (
               <div className="video-item" key={video.id.videoId}>
-                <Link to={`/video/${video.id.videoId}`}>
+                <Link to={`/video/${video.id}`}>
                   <img
                     className="video-thumbnail"
                     src={video.snippet.thumbnails.default.url}
@@ -82,7 +82,7 @@ const Home = ({ isLeftContainerOpen }) => {
                   <div className="video-info">
                     <h2 className="video-title">{video.snippet.title}</h2>
                     <p className="video-channel">
-                      Channel: {video.snippet.channelTitle}
+                      {video.snippet.channelTitle}
                     </p>
                     <p className="video-views">
                       Views: {video.statistics.viewCount}
