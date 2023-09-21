@@ -1,6 +1,7 @@
 # YouTube Clone
 
 A simple YouTube clone built using Vite and React.
+The website is a bit visually unpolished. The main focuse was to work with fetching and displaying data from APIs.
 
 Live demo [HERE](https://stefanpython.github.io/youtube-clone/) - Note: If no video is loading it means my free api quota exceeded for the day.
 Wait 24h and try again.
