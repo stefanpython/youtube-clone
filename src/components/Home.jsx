@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { formatDistance } from "date-fns";
 
 const Home = ({ isLeftContainerOpen }) => {
   const [videos, setVideos] = useState([]);
@@ -36,6 +37,31 @@ const Home = ({ isLeftContainerOpen }) => {
         console.error("Error retrieving data:", err);
       });
   };
+
+  // Format Duration
+  function formatVideoDuration(duration) {
+    if (!duration) return "N/A"; // Handle cases where duration is null
+
+    const durationParts = duration.match(/PT(\d+)M(\d+)S/);
+
+    if (!durationParts) return "N/A"; // Handle cases where duration doesn't match the expected pattern
+
+    const minutes = parseInt(durationParts[1], 10);
+    const seconds = parseInt(durationParts[2], 10);
+
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  }
+
+  // Format views
+  function formatViewCount(viewCount) {
+    if (viewCount >= 1000000) {
+      return (viewCount / 1000000).toFixed(1) + "M";
+    } else if (viewCount >= 1000) {
+      return (viewCount / 1000).toFixed(1) + "k";
+    } else {
+      return viewCount.toString();
+    }
+  }
 
   return (
     <div className="home-container">
@@ -79,20 +105,25 @@ const Home = ({ isLeftContainerOpen }) => {
                     src={video.snippet.thumbnails.default.url}
                     alt={video.snippet.title}
                   />
+
+                  <div className="video-duration">
+                    <p>{formatVideoDuration(video.contentDetails.duration)}</p>
+                  </div>
+
                   <div className="video-info">
                     <h2 className="video-title">{video.snippet.title}</h2>
                     <p className="video-channel">
                       {video.snippet.channelTitle}
                     </p>
                     <p className="video-views">
-                      Views: {video.statistics.viewCount}
-                    </p>
-                    <p className="video-duration">
-                      Duration: {video.contentDetails.duration}
-                    </p>
-                    <p className="video-upload-date">
-                      Uploaded:{" "}
-                      {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                      {formatViewCount(video.statistics.viewCount)} views •{" "}
+                      <span className="upload-date">
+                        {formatDistance(
+                          new Date(video.snippet.publishedAt),
+                          new Date(),
+                          { addSuffix: true }
+                        )}
+                      </span>
                     </p>
                   </div>
                 </Link>
